@@ -9,31 +9,22 @@ plugins {
     id "base"
     id "java"
     id "application"
+    id "eclipse"
 }
 
 repositories {
     mavenCentral()
-    // jcenter()
 }
 
 dependencies {
-    compile group: 'commons-logging', name: 'commons-logging', version: '1.2'
+    compile 'commons-logging:commons-logging:1.2'
+    compile 'org.springframework:spring-context:5.1.2.RELEASE'
 }
 
-task copy(type: Copy, group: "Custom", description: "Copy sources to destination directory") {
-    from "src"
-    into "dest"
-}
-
-task zip(type: Zip, group: "Archive", description: "Archives sources in azip file") {
-    from "src"
-    setArchiveName "basic-demo-1.0.zip"
-}
-
-// See the docs for the application plugin for info about this
+// See the docs for the _application_ plugin for info about this
 mainClassName = "com.tutorialspoint.MainApp"
 
-// Set the docs for the java plugin for info about this.
+// Set the docs for the _java_ plugin for info about this.
 // The sourceSets property (not sure if that's the offical name)
 // changes the default dir structure to the one specified.
 // The default is to use src/main/java and src/main/resources.
@@ -46,4 +37,17 @@ sourceSets {
             srcDirs = ['src']
         }
     }
+}
+
+///
+/// These are just me playing around
+
+task copy(type: Copy, group: "Custom", description: "Copy sources to destination directory") {
+    from "src"
+    into "dest"
+}
+
+task zip(type: Zip, group: "Archive", description: "Archives sources in azip file") {
+    from "src"
+    setArchiveName "basic-demo-1.0.zip"
 }
